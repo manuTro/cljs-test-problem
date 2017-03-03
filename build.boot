@@ -20,7 +20,7 @@
                  [org.clojars.magomimmo/valip "0.4.0-SNAPSHOT"]
                  [enlive "1.1.6"]
                  [adzerk/boot-test "1.2.0"]
-                 [crisptrutski/boot-cljs-test "0.2.1-SNAPSHOT"]
+                 [crisptrutski/boot-cljs-test "0.3.0"]
                  ])
 
 (require '[adzerk.boot-cljs :refer [cljs]]
@@ -42,8 +42,8 @@
    (testing)
    (watch)
    (cljs-repl)
-   (test-cljs :out-file "main.js"
+   (test-cljs :ids ["js/main"]
               :js-env :phantom 
               :namespaces '#{modern-cljs.validators-test}
-              :update-fs? true)
+              :update-fs? false)
    (target :dir #{"target"})))
