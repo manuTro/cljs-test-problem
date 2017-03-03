@@ -46,10 +46,10 @@
    (watch)
    (reload)
    (cljs-repl)
-   (test-cljs :out-file "main.js" 
+   (test-cljs :ids ["js/main"] 
               :js-env :phantom 
               :namespaces '#{modern-cljs.shopping.validators-test}
-              :update-fs? true)
+              :update-fs? false)
    (test :namespaces '#{modern-cljs.shopping.validators-test})
    (target :dir #{"target"})))
 
