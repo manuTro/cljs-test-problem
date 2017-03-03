@@ -40,6 +40,7 @@
           :resource-root "target"
           :reload true)
    (testing)
+   (watch)
    (cljs-repl)
    (test-cljs :ids ["js/main"] 
               :js-env :phantom 
