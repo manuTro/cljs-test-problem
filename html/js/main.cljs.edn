@@ -1,3 +1,0 @@
-{:require [modern-cljs.shopping ]
- :compiler-options {:asset-path "js/main.out"}
-}
