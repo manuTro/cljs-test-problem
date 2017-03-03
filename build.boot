@@ -7,7 +7,6 @@
                  [org.clojure/clojurescript "1.9.494"] ;; add CLJS
                  [adzerk/boot-cljs "1.7.228-2"]
                  [pandeiro/boot-http "0.7.6"]
-                 [adzerk/boot-reload "0.5.1"]
                  [adzerk/boot-cljs-repl "0.3.3"]       ;; add bREPL
                  [com.cemerick/piggieback "0.2.1"]     ;; needed by bREPL 
                  [weasel "0.7.0"]                      ;; needed by bREPL
@@ -26,9 +25,7 @@
 
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
-         '[adzerk.boot-reload :refer [reload]]
          '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
-         '[adzerk.boot-test :refer [test]]
          '[crisptrutski.boot-cljs-test :refer [test-cljs]])
 
 (deftask testing
@@ -43,27 +40,9 @@
           :resource-root "target"
           :reload true)
    (testing)
-   (watch)
-   (reload)
    (cljs-repl)
    (test-cljs :ids ["js/main"] 
               :js-env :phantom 
               :namespaces '#{modern-cljs.shopping.validators-test}
               :update-fs? false)
-   (test :namespaces '#{modern-cljs.shopping.validators-test})
-   (target :dir #{"target"})))
-
-;;; add dev task
-(deftask dev 
-  "Launch immediate feedback dev environment"
-  []
-  (comp
-   (serve ;:dir "target"                                
-          :handler 'modern-cljs.core/app               ;; ring hanlder
-          :resource-root "target"                      ;; root classpath
-          :reload true)                                ;; reload ns
-   (watch)
-   (reload)
-   (cljs-repl) ;; before cljs
-   (cljs)
    (target :dir #{"target"})))
