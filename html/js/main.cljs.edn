@@ -1,3 +1,4 @@
-{:require [modern-cljs.shopping ]
- :compiler-options {:asset-path "js/main.out"}
+{:require [modern-cljs.shopping modern-cljs.validators modern-cljs.validators-test]
+ :compiler-options {
+	 	     :asset-path "main.out"}
 }
